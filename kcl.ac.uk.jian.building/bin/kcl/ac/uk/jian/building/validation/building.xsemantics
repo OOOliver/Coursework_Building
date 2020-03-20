@@ -1,0 +1,12 @@
+import kcl.ac.uk.jian.building.validation.AbstractBuildingValidator
+import kcl.ac.uk.jian.building.validation.BuildingType
+import kcl.ac.uk.jian.building.building.Expression
+
+system kcl.ac.uk.jian.building.typing.BuildingTypeSystem
+
+validatorExtends AbstractBuildingValidator
+
+//judgments {
+////	type |- Expression exp : output BuildingType
+////		error "cannot type " + stringRep(exp)
+//}

@@ -1,0 +1,75 @@
+grammar kcl.ac.uk.jian.building.Building with org.eclipse.xtext.common.Terminals
+
+generate building "http://www.ac.kcl/uk/jian/building/Building"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+BuildingProgram:
+	processes += Process*
+;
+	
+Process:
+	AddFloorProcess |
+	PaintProcess |
+	AddWindowProcess |
+	VariableDeclaration |
+	Loop
+;
+
+VariableDeclaration:
+	"var" name=ID "=" value=INT
+;
+
+AddFloorProcess:
+	structure = WholeStructure "(" levels = Addition ")"
+;
+
+enum WholeStructure:
+	aboveground | underground
+;
+
+PaintProcess:
+	'paint' 'the' '[' levels = Addition ']' 'floor' color = ID
+;
+
+AddWindowProcess:
+	'add' num = Addition 'windows' 'to' '[' levels = Addition ']' 'floor'
+;
+
+
+Loop:
+	count = Addition "times" "do"
+	  processes += Process+
+	"end"
+;
+
+Addition returns Expression:
+	Multiplication ({Addition.left = current} operator+=("+"|"-") right+=Multiplication)*
+;
+
+Multiplication returns Expression:
+	Primary ({Multiplication.left = current} operator+=("*"|"/") right+=Primary)*
+;
+
+Primary returns Expression:
+	IntLiteral |
+	IntVarExpression |
+	RealLiteral |
+	"(" Addition ")"
+;
+
+IntLiteral:
+	val = INT
+;
+
+RealLiteral:
+	val = REAL
+;
+
+IntVarExpression:
+	var = [VariableDeclaration]
+;
+
+REAL returns ecore::EFloat hidden():
+	INT? "." INT
+;

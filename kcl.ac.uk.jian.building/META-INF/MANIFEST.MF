@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: kcl.ac.uk.jian.building
+Bundle-ManifestVersion: 2
+Bundle-Name: kcl.ac.uk.jian.building
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: kcl.ac.uk.jian.building; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
+ org.eclipse.xsemantics.runtime;bundle-version="1.13.0",
+ org.eclipse.xtend.lib;bundle-version="2.14.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: kcl.ac.uk.jian.building,
+ kcl.ac.uk.jian.building.scoping,
+ kcl.ac.uk.jian.building.services,
+ kcl.ac.uk.jian.building.building.util,
+ kcl.ac.uk.jian.building.building.impl,
+ kcl.ac.uk.jian.building.generator,
+ kcl.ac.uk.jian.building.parser.antlr.internal,
+ kcl.ac.uk.jian.building.building,
+ kcl.ac.uk.jian.building.validation,
+ kcl.ac.uk.jian.building.serializer,
+ kcl.ac.uk.jian.building.parser.antlr
+Import-Package: org.apache.log4j
